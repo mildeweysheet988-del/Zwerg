@@ -1,0 +1,120 @@
+/* ==================== RESET & GRUNDLAGEN ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    color: #ffffff;
+}
+
+/* ==================== HAUPTCONTAINER ==================== */
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    max-width: 100%;
+}
+
+/* ==================== HAUPTNACHRICHT ==================== */
+.message {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.highlight {
+    background: rgba(255, 255, 255, 0.2);
+    padding: clamp(30px, 8vw, 50px) clamp(40px, 10vw, 80px);
+    border-radius: 20px;
+    font-weight: 700;
+    margin: 20px auto;
+    max-width: 90vw;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: pulse-animation 1.5s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.highlight:focus {
+    outline: 2px solid #00D9FF;
+    outline-offset: 4px;
+}
+
+/* ==================== ANIMATIONEN ==================== */
+@keyframes pulse-animation {
+    0%, 100% {
+        transform: scale(1);
+        background: rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        transform: scale(1.02);
+        background: rgba(255, 255, 255, 0.25);
+    }
+}
+
+@keyframes confetti-burst {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-500px) translateX(var(--tx)) rotate(360deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* ==================== KONFETTI-ELEMENT ==================== */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 999;
+    border-radius: 50%;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 0;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .message {
+        font-size: 1.5rem;
+    }
+
+    .highlight {
+        padding: 30px 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
